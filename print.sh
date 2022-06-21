@@ -13,3 +13,5 @@ echo Hello World
 ## m - End of Syntax
 ## 0 - To disable colour
 
+echo hello World
+
