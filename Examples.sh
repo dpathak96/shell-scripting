@@ -1,6 +1,6 @@
 #!/bin/bash
 
-username=dhrumil
+username=motu
 
 echo Adding user ${username}
 useradd ${username}
