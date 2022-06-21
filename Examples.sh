@@ -11,5 +11,5 @@ echo Thank you
 read -p 'Enter you name: ' name
 read -p 'Enter your age: ' age
 
-echo "your Name = ${name}, Your age = $age}"
+echo "your Name = ${name}, Your age = {$age}"
 
