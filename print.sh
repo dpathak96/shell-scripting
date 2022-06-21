@@ -14,4 +14,3 @@ echo Hello World
 ## 0 - To disable colour
 
 echo hello World
-
