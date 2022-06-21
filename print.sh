@@ -14,3 +14,13 @@ echo Hello World
 ## 0 - To disable colour
 
 echo hello World
+
+## Colour codes
+# Red - 31
+# Green 32
+# Yellow - 33
+
+echo -e "\e[31mHello In Red colour\e[0m"
+echo -e "\e[32mHello In Green colour\e[0m"
+
+
