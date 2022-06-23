@@ -2,5 +2,9 @@
 a=100
 b=200
 
-echo a = $a+$b
+#Access variables
+
+# $ preceeding to variable name , $a
+# ${a} variable between curly brackets is best practice
+
 
