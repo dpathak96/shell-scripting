@@ -10,5 +10,5 @@ ADD=$((2+3))
 echo ADD = $ADD
 
 
-DATE=$((date))
+DATE=$(date)
 echo Good Morning Everyone, Todays date is ${DATE}
