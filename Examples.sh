@@ -7,4 +7,4 @@ useradd $username
 echo $username successfully added
 
 ADD=((2+3))
-echo $ADD
+echo ADD = $ADD
