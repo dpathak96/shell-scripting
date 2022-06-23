@@ -1,6 +1,6 @@
 #!/bin/bash
 
-username=motu
+username=nanu
 
 echo Script to add user $username
 useradd $username
