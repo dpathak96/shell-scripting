@@ -8,3 +8,7 @@ echo $username successfully added
 
 ADD=$((2+3))
 echo ADD = $ADD
+
+
+DATE=$((date +%c))
+echo Good Morning Everyone, Todays date is $DATE
