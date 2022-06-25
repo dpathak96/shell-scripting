@@ -6,3 +6,4 @@ if [ "${userid}" -eq 0 ]; then
 exit
 fi
 
+echo welcome to the script
