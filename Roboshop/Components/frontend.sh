@@ -51,7 +51,7 @@ STAT_CHECK $? "Extracting NGINX Content"
 cd /tmp/frontend-main/static/ && cp -r * /usr/share/nginx/html/
 STAT_CHECK $? "Copying frontend content"
 
-cp /ymp/frontend-main/localhost.conf /ect/nginx/default.d/roboshop.conf
+cp /tmp/frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
 STAT_CHECK $? "Update Nginx Config File"
 
 syatemctl start nginx && systemctl restart nginx &>>${LOG_FILE}
