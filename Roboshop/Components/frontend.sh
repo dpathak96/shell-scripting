@@ -31,7 +31,6 @@ STAT_CHECK $? "Nginx installation"
 
 DOWNLOAD frontend
 
-
 rm -rf /usr/share/gninx/html/*
 STAT_CHECK $? "Remove Old HTML Pages"
 
