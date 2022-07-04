@@ -31,8 +31,6 @@ STAT_CHECK $? "Nginx installation"
 
 DOWNLOAD frontend
 
-curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" >>${LOG_FILE}
-STAT_CHECK $? "Download Frontend"
 
 rm -rf /usr/share/gninx/html/*
 STAT_CHECK $? "Remove Old HTML Pages"
