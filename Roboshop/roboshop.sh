@@ -6,7 +6,7 @@ if [ "${user_id}" -ne 0 ]; then
   exit
 fi
 
-COMPONENT=$1
+export COMPONENT=$1
 if [ -z "${COMPONENT}" ]; then
   echo Component input missing
   exit
