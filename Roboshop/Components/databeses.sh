@@ -6,7 +6,7 @@ LOG_FILE=/tmp/roboshop.log
 rm -rf ${LOG_FILE}
 
 STAT_CHECK() {
-  if [ $1 -ne 0 ]; then
+  if [ $1 != 0 ]; then
     echo -e "\e[1;31m${1} - FAILED\e[0m"
     exit 1
   else
