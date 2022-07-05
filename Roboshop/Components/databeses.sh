@@ -30,7 +30,7 @@ STAT_CHECK "Download mongodb code"
 cd /tmp && unzip -o /tmp/mongodb.zip &>>${LOG_FILE}
 STAT_CHECK "Extract MongoDB code"
 
-cd /tmp/mongodb.main
+cd /tmp/mongodb-main
 mongo < catalogue.js &>>{LOG_FILE} && mongo < users.js &>>{LOG_FILE}
 STAT_CHECK "Load Schema"
 
