@@ -46,7 +46,7 @@ echo "---------<<<<<<<<< REDIS SETUP >>>>>>>>-----------"
 DOWNLOAD redis
 
 yum install redis -y &>>{LOG_FILE}
-STAT_CHECK $?
+STAT_CHECK $? "Install Redis"
 
 sed -i 's/127.0.0.1/0.0.0.0/'  /etc/redis.conf &>>{LOG_FILE}
 STAT_CHECK $? "Update config file"
