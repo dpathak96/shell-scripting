@@ -10,7 +10,7 @@ STAT_CHECK() {
     echo -e "\e[1;31m${2} - FAILED\e[0m"
     exit 1
   else
-    echo -e "\e[1;30m${2} - SUCCESS\e[0m"
+    echo -e "\e[1;33m${2} - SUCCESS\e[0m"
   fi
 }
 
