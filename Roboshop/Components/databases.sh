@@ -1,6 +1,6 @@
 #!bin/bash
 
-#-----<<<<<< MONGODB SETUP >>>>>---------
+echo "-----<<<<<< MONGODB SETUP >>>>>---------"
 
 LOG_FILE=/tmp/roboshop.log
 rm -rf ${LOG_FILE}
@@ -37,4 +37,6 @@ STAT_CHECK $? "Extract MongoDB code"
 cd /tmp/mongodb-main
 mongo < catalogue.js &>>{LOG_FILE} && mongo < users.js &>>{LOG_FILE}
 STAT_CHECK $? "Load Schema"
+
+
 
