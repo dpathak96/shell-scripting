@@ -1,6 +1,6 @@
 #!bin/bash
 
-echo "-----<<<<<< "\e[1;35mMONGODB SETUP\e[0m] >>>>>---------"
+echo "-----<<<<<< MONGODB SETUP >>>>>---------"
 
 LOG_FILE=/tmp/roboshop.log
 rm -rf ${LOG_FILE}
