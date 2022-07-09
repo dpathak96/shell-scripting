@@ -82,3 +82,13 @@ set_permissions -p / roboshop ".*" ".*" ".*"  &>>${LOG_FILE}
 STAT_CHECK $? "Configure app user permission"
 
 
+
+echo "--------<<<<<<<< MySQL SETUP >>>>>> ------------"
+
+DOWNLOAD mysql
+
+yum install mysql-community-server -y &>>{LOG_FILE}
+STAT_CHECK $? "Install MYSQL"
+
+systemctl enable mysql &>>{LOF_FILE} && systemctl start mysql &>>{LOG_FILE}
+STAT_CHECK $? "Start mysql"
