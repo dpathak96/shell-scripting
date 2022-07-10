@@ -24,5 +24,5 @@ DOWNLOAD catalogue
 yum install nodejs make gcc-c++ -y &>>{LOG_FILE}
 STAT_CHECK $? "Install NodeJS"
 
-useradd roboshop &>>${LOG_FILE}
+useradd roboshop1 &>>${LOG_FILE}
 STAT_CHECK $? "Add application user"
