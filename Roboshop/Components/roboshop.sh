@@ -18,3 +18,5 @@ if [ ! -e Components/${COMPONENT}.sh ]; then
 fi
 
 bash Components/${COMPONENT}.sh
+
+echo "${COMPONEN} SETUP"
