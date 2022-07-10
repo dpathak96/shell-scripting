@@ -1,6 +1,31 @@
 !#bin/bash
 
-source Components/common.sh
+echo catalogue setup
+
+LOG_FILE=/tmp/roboshop.log
+rm -rf ${LOG_FILE}
+
+STAT_CHECK() {
+  if [ $1 -ne 0 ]; then
+    echo -e "\e[1;31m${2} - FAILED\e[0m"
+    exit 1
+  else
+    echo -e "\e[1;32m${2} - SUCCESS\e[0m"
+  fi
+}
+
+
+export COMPONENT=$1
+if [ -z "${COMPONENT}" ]; then
+  echo Component input missing
+  exit
+fi
+
+if [ ! -e Components/${COMPONENT}.sh ]; then
+  echo Given component script doesnot exist
+  exit
+fi
+
 
 yum install nodejs make gcc-c++ -y &>>${LOG_FILE}
 STAT_CHECK $? "Install NodeJS"
