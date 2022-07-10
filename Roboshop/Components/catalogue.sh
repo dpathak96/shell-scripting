@@ -11,7 +11,7 @@ STAT_CHECK $? "Install NodeJS"
 
 useradd roboshop &>>{LOG_FILE}
 
-if [ $? -ne 0 ]; then
+if [ $? -ne 9 ]; then
   useradd roboshop &>>{LOG_FILE}
   STAT_CHECK $? "Add Application user"
 fi
