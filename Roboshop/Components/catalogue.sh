@@ -21,7 +21,7 @@ DOWNLOAD() {
 
 DOWNLOAD catalogue
 
-yum install nodejs make gcc-c++ -y
+yum install nodejs make gcc-c++ -y &>>{LOG_FILE}
 STAT_CHECK $? "Install NodeJS"
 
 useradd roboshop &>>${LOG_FILE}
