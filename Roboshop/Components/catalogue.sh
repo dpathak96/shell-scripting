@@ -2,7 +2,7 @@
 
 echo "--------<<<<<<<catalogue setup>>>>>>>>>---------"
 
-source Components/common.sh
+source common.sh
 
 DOWNLOAD catalogue
 
