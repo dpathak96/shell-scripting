@@ -68,7 +68,7 @@ STAT_CHECK $? "Install Erlang dependency"
 yum install rabbitmq-server -y &>>{LOG_FILE}
 STAT_CHECK $? "Install RabbitMQ server"
 
-systemctl enable rabbitmq-server &>>{LOG_FILE} && systemctl start rabbitmq-server &>>{LOG_FILE}
+systemctl enable rabbitmq-server &>>{LOG_FILE} && systemctl start rabbitmq-server &>>${LOG_FILE}
 STAT_CHECK $? "Start RabbitMQ"
 
 rabbitmqctl list_users | grep roboshop &>>${LOG_FILE}
