@@ -15,18 +15,6 @@ STAT_CHECK() {
 }
 
 
-export COMPONENT=$1
-if [ -z "${COMPONENT}" ]; then
-  echo Component input missing
-  exit
-fi
-
-if [ ! -e Components/${COMPONENT}.sh ]; then
-  echo Given component script doesnot exist
-  exit
-fi
-
-
 yum install nodejs make gcc-c++ -y &>>${LOG_FILE}
 STAT_CHECK $? "Install NodeJS"
 
