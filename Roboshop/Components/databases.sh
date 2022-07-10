@@ -71,15 +71,14 @@ STAT_CHECK $? "Install RabbitMQ server"
 systemctl enable rabbitmq-server &>>{LOG_FILE} && systemctl start rabbitmq-server &>>${LOG_FILE}
 STAT_CHECK $? "Start RabbitMQ"
 
-id roboshop &>>{LOG_FILE}
+id roboshop
 
 if [ $? -ne 0 ]; then
   useradd roboshop &>>{LOG_FILE}
   STAT_CHECK $? "Add Application user"
 fi
 
-rabbitmqctl set_user_tags roboshop administrator &>>{LOG_FILE} && rabbitmqctl
-set_permissions -p / roboshop ".*" ".*" ".*"  &>>${LOG_FILE}
+rabbitmqctl set_user_tags roboshop administrator &>>{LOG_FILE} && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"  &>>${LOG_FILE}
 STAT_CHECK $? "Configure app user permission"
 
 
