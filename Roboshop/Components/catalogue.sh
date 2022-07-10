@@ -1,6 +1,6 @@
 #!bin/bash
 
-echo catalogue setup
+echo "--------<<<<<<<catalogue setup>>>>>>>>>---------"
 
 LOG_FILE=/tmp/roboshop.log
 rm -rf ${LOG_FILE}
