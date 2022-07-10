@@ -9,7 +9,7 @@ DOWNLOAD catalogue
 yum install nodejs make gcc-c++ -y &>>{LOG_FILE}
 STAT_CHECK $? "Install NodeJS"
 
-useradd roboshop &>>{LOG_FILE}
+id roboshop &>>{LOG_FILE}
 
 if [ $? -ne 0 ]; then
   useradd roboshop &>>{LOG_FILE}
