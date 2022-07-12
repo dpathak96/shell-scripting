@@ -18,7 +18,7 @@ fi
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>{LOG_FILE}
 STAT_CHECK $? "Download catalogue"
 
-cd /home/roboshop && unzip /tmp/catalogue.zip
+cd /home/roboshop && unzip -o /tmp/catalogue.zip
 STAT_CHECK $? "unzip catalogue content"
 
 rm -rf /home/roboshop/catalogue && mkdir -p /home/roboshop/catalogue && cp -r /tmp/catalogue-main/* /home/roboshop/catalogue
