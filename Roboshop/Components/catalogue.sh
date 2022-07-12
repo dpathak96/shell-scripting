@@ -21,7 +21,7 @@ STAT_CHECK $? "Download catalogue"
 unzip /tmp/catalogue.zip &>>{LOG_FILE}
 STAT_CHECK $? "unzip catalogue content"
 
-cd /home/roboshop/catalogue && npm install &>>{LOG_FILE}
+cd /home/roboshop/catalogue && npm install
 STAT_CHECK $? "NPM install"
 
 
