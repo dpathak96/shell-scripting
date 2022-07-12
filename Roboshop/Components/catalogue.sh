@@ -18,14 +18,11 @@ fi
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>{LOG_FILE}
 STAT_CHECK $? "Download catalogue"
 
-cd /home/roboshop && unzip /tmp/catalogue.zip &>>{LOG_FILE}
+unzip -o /tmp/catalogue.zip -y &>>{LOG_FILE}
 STAT_CHECK $? "unzip catalogue content"
 
-rm -rf /home/roboshop/catalogue && mkdir -p /home/roboshop/catalogue && cp -r /tmp/catalogue-main/* /home/roboshop/catalogue
-STAT_CHECK $? "Copy Catalogue content"
-
-# cd /home/roboshop/catalogue && npm install &>>{LOG_FILE}
-# STAT_CHECK $? "NPM install"
+cd /home/roboshop/catalogue && npm install &>>{LOG_FILE}
+STAT_CHECK $? "NPM install"
 
 
 
