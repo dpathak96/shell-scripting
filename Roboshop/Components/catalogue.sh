@@ -18,17 +18,18 @@ fi
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>{LOG_FILE}
 STAT_CHECK $? "Download catalogue"
 
-unzip -o /tmp/catalogue.zip
-STAT_CHECK $? "extract catalogue content"
+cd /home/roboshop && unzip /tmp/catalogue.zip
+STAT_CHECK $? "unzip catalogue content"
+
+rm -rf /home/roboshop/catalogue && mkdir -p /home/roboshop/catalogue && cp -r /tmp/catalogue-main/* /home/roboshop/catalogue
+STAT_CHECK $? "Copy Catalogue content"
+
+# cd /home/roboshop/catalogue && npm install &>>{LOG_FILE}
+# STAT_CHECK $? "NPM install"
 
 
-cd /home/roboshop/catalogue && npm install &>>{LOG_FILE}
-STAT_CHECK $? "NPM install"
 
-
-mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
-STAT_CHECK $? "configure service file"
-
+# mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 # systemctl daemon-reload
 # systemctl start catalogue
 # systemctl enable catalogue
