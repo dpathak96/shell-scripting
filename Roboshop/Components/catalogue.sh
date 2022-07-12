@@ -15,7 +15,8 @@ if [ $? -ne 0 ]; then
   STAT_CHECK $? "Add Application user"
 fi
 
-curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip"
+curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>{LOG_FILE}
+STAT_CHECK $? "Download catalogue"
 
 
 rm -rf /home/roboshop/catalogue && mkdir -p /home/roboshop/catalogue && cp -r /tmp/catalogue-main/* /home/roboshop/catalogue
