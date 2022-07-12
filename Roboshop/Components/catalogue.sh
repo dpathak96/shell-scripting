@@ -23,7 +23,7 @@ STAT_CHECK $? "unzip catalogue content"
 
 cd /home/roboshop/catalogue
 
-sudo yum install npm
+sudo yum install npm &>>{LOG_FILE}
 STAT_CHECK $? "NPM install"
 
 
