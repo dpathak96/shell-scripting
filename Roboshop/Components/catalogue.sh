@@ -18,7 +18,7 @@ fi
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>{LOG_FILE}
 STAT_CHECK $? "Download catalogue"
 
-unzip /tmp/catalogue.zip &>>{LOG_FILE}
+unzip -o /tmp/catalogue.zip
 STAT_CHECK $? "unzip catalogue content"
 
 cd /home/roboshop/catalogue && npm install
