@@ -17,7 +17,7 @@ fi
 
 DOWNLOAD catalogue
 
-rm -rf /home/roboshop/catalogue && mkdir -p /home/roboshop/catalogue && cp -r tmp/catalogue-main/* /home/roboshop/catalogue &&>>{LOG_FILE}
+rm -rf /home/roboshop/catalogue && mkdir -p /home/roboshop/catalogue && cp -r /tmp/catalogue-main/* /home/roboshop/catalogue
 STAT_CHECK $? "Copy Catalogue content"
 
 cd /home/roboshop/catalogue && npm install &>>{LOG_FILE}
