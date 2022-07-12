@@ -23,6 +23,8 @@ STAT_CHECK $? "unzip catalogue content"
 
 cd /home/roboshop/catalogue
 
+sudo ln -s /usr/local/bin/npm /usr/bin/npm
+
 npm install
 STAT_CHECK $? "NPM install"
 
