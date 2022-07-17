@@ -40,18 +40,18 @@ cd /tmp
  unzip -o ${1}.zip
  STAT_CHECK $? "unzip ${1} content"
 
- cd /home/roboshop/${1}
+ cd /home/Roboshop/${1}
 
  sudo yum install npm &>>{LOG_FILE}
  STAT_CHECK $? "NPM install"
 
- chown roboshop:roboshop -R /home/roboshop
+ chown roboshop:roboshop -R /home/Roboshop
 
- sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/roboshop/${1}/systemd.service
+ sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/Roboshop/${1}/systemd.service
  STAT_CHECK $? "Update IP address in systemd file"
 
 
- mv /home/roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
+ mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
  STAT_CHECK $? "Moved content in system file"
 
  systemctl daemon-reload &>>{LOG_FILE} && systemctl start {component} &>>{LOG_FILE} && systemctl enable {component} &>>{LOG_FILE}
