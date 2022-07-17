@@ -2,6 +2,6 @@
 
 source common.sh
 
-echo "--------<<<<<<< CART SETUP >>>>>>>>>---------"
+echo "--------<<<<<<< USER SETUP >>>>>>>>>---------"
 
-NODEJS catalogue
+NODEJS user
