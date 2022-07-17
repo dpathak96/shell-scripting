@@ -35,7 +35,7 @@ component=${1}
  curl -s -L -o /tmp/{component}.zip "https://github.com/roboshop-devops-project/{component}/archive/main.zip" &>>{LOG_FILE}
  STAT_CHECK $? "Download {component}"
 
- unzip -o /tmp/{component}}.zip
+ unzip -o /tmp/{component}.zip
  STAT_CHECK $? "unzip {component} content"
 
  cd /home/roboshop/{component}
