@@ -32,27 +32,27 @@ component=${1}
   STAT_CHECK $? "Add Application user"
  fi
 
- curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>{LOG_FILE}
- STAT_CHECK $? "Download catalogue"
+ curl -s -L -o /tmp/{component}.zip "https://github.com/roboshop-devops-project/{component}/archive/main.zip" &>>{LOG_FILE}
+ STAT_CHECK $? "Download {component}"
 
- unzip -o /tmp/catalogue.zip
- STAT_CHECK $? "unzip catalogue content"
+ unzip -o /tmp/{component}}.zip
+ STAT_CHECK $? "unzip {component} content"
 
- cd /home/roboshop/catalogue
+ cd /home/roboshop/{component}
 
  sudo yum install npm &>>{LOG_FILE}
  STAT_CHECK $? "NPM install"
 
  chown roboshop:roboshop -R /home/roboshop
 
- sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/roboshop/catalogue/systemd.service
+ sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/roboshop/{component}/systemd.service
  STAT_CHECK $? "Update IP address in systemd file"
 
 
- mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
+ mv /home/roboshop/{component}/systemd.service /etc/systemd/system/{component}.service
  STAT_CHECK $? "Moved content in system file"
 
- systemctl daemon-reload &>>{LOG_FILE} && systemctl start catalogue &>>{LOG_FILE} && systemctl enable catalogue &>>{LOG_FILE}
- STAT_CHECK $? "Start Catalogue service"
+ systemctl daemon-reload &>>{LOG_FILE} && systemctl start {component} &>>{LOG_FILE} && systemctl enable {component} &>>{LOG_FILE}
+ STAT_CHECK $? "Start {component} service"
 
 }
