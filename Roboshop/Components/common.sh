@@ -38,7 +38,7 @@ component=${1}
 cd /tmp
 
  unzip -o ${1}.zip
- STAT_CHECK $? "unzip {component} content"
+ STAT_CHECK $? "unzip ${1} content"
 
  cd /home/roboshop/{component}
 
@@ -47,11 +47,11 @@ cd /tmp
 
  chown roboshop:roboshop -R /home/roboshop
 
- sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/roboshop/{component}/systemd.service
+ sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/roboshop/${1}/systemd.service
  STAT_CHECK $? "Update IP address in systemd file"
 
 
- mv /home/roboshop/{component}/systemd.service /etc/systemd/system/{component}.service
+ mv /home/roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
  STAT_CHECK $? "Moved content in system file"
 
  systemctl daemon-reload &>>{LOG_FILE} && systemctl start {component} &>>{LOG_FILE} && systemctl enable {component} &>>{LOG_FILE}
