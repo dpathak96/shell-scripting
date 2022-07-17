@@ -15,6 +15,7 @@ STAT_CHECK() {
 set-hostname -skip-apply ${COMPONENT}
 
 DOWNLOAD() {
+component=${1}
   curl -s -L -o /tmp/${1}.zip "https://github.com/roboshop-devops-project/${1}/archive/main.zip" &>>${LOG_FILE}
   STAT_CHECK $? "Download ${1} code"
 }
@@ -32,7 +33,7 @@ component=${1}
   STAT_CHECK $? "Add Application user"
  fi
 
- curl -s -L -o /tmp/{component}.zip "https://github.com/roboshop-devops-project/{component}/archive/main.zip" &>>{LOG_FILE}
+ curl -s -L -o /tmp/${1}.zip "https://github.com/roboshop-devops-project/${1}/archive/main.zip" &>>{LOG_FILE}
  STAT_CHECK $? "Download {component}"
 
 cd /tmp
