@@ -41,7 +41,7 @@ cd /tmp
  unzip -o ${1}.zip
  STAT_CHECK $? "unzip ${1} content"
 
- cd /home/Roboshop/${1}
+ mkdir /home/Roboshop && cd /home/Roboshop/${1}
 
  sudo yum install npm &>>{LOG_FILE}
  STAT_CHECK $? "NPM install"
