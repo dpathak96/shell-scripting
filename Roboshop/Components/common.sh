@@ -22,7 +22,7 @@ DOWNLOAD() {
 
 NODEJS() {
 component=${1}
- yum install nodejs make gcc-c++ -y &>>{LOG_FILE}
+ yum install nodejs make gcc-c++ -y
  STAT_CHECK $? "Install NodeJS"
 
  id roboshop &>>{LOG_FILE}
