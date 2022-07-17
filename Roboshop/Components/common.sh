@@ -47,9 +47,6 @@ cd /tmp
 
  chown roboshop:roboshop -R /home/Roboshop
 
- cd /shell-scripting/Roboshop/Components/catalogue-main
-
- sudo cp systemd.service /home/Roboshop/${1}/systemd.service
 
  cd /home/Roboshop/${1}
 
