@@ -43,11 +43,13 @@ cd /tmp
 
  mkdir /home/Roboshop && cd /home/Roboshop/${1}
 
+
  sudo yum install npm &>>{LOG_FILE}
  STAT_CHECK $? "NPM install"
 
  chown roboshop:roboshop -R /home/Roboshop
 
+cd /shell-scripting/Roboshop/Components/catalogue-main/ && sudo cp systemd.service /home/Roboshop/${1}/
 
  sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/Roboshop/${1}/systemd.service
  STAT_CHECK $? "Update IP address in systemd file"
