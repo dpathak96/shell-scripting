@@ -37,7 +37,7 @@ component=${1}
 
 cd /tmp
 
- unzip -o {component}.zip
+ unzip -o ${1}.zip
  STAT_CHECK $? "unzip {component} content"
 
  cd /home/roboshop/{component}
