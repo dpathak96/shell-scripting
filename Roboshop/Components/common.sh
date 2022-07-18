@@ -51,6 +51,7 @@ cd /tmp
  chown roboshop:roboshop -R /home/Roboshop
 
  sudo mv /shell-scripting/Roboshop/Components/catalogue-main/systemd.service /home/Roboshop/catalogue/
+ STAT_CHECK $? "Fetched system file"
 
  sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/Roboshop/${1}/systemd.service
  STAT_CHECK $? "Update IP address in systemd file"
