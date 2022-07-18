@@ -45,7 +45,7 @@ cd /tmp
  mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
 
 
- sudo yum install npm
+ sudo yum install npm -y
  STAT_CHECK $? "NPM install"
 
  chown roboshop:roboshop -R /home/Roboshop
