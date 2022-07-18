@@ -43,6 +43,7 @@ cd /tmp
 
 
  mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
+ STAT_CHECK $? "DIRECTORY Exists"
 
 
  sudo yum install npm -y &>>{LOG_FILE}
