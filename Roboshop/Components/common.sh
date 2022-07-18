@@ -53,11 +53,10 @@ cd /tmp
  sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
  STAT_CHECK $? "Fetched system file"
 
- sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
+ sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
         -e 's/Redis_ENDPOINT/redis.roboshop.interior/' \
         -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
-        -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/'
-        /home/Roboshop/${1}/systemd.service
+        -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' /home/Roboshop/${1}/systemd.service
  STAT_CHECK $? "Update IP address in systemd file"
 
 
