@@ -41,8 +41,7 @@ cd /tmp
  unzip -o ${1}.zip
  STAT_CHECK $? "unzip ${1} content"
 
-
- mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
+ rm -rf /home/Roboshop/${1} && mkdir /home/Roboshop/${1}
  STAT_CHECK $? "DIRECTORY Exists"
 
 
