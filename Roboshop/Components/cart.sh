@@ -1,3 +1,7 @@
-#!/bin/bash
+#!bin/bash
 
-echo cart setup
+source common.sh
+
+echo "--------<<<<<<< CART SETUP >>>>>>>>>---------"
+
+NODEJS cart
