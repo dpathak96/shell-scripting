@@ -23,7 +23,7 @@ component=${1}
 
 NODEJS() {
 component=${1}
- yum install nodejs make gcc-c++ -y
+ yum install nodejs make gcc-c++ -y &>>{LOG_FILE}
  STAT_CHECK $? "Install NodeJS"
 
  id roboshop &>>{LOG_FILE}
@@ -38,7 +38,7 @@ component=${1}
 
 cd /tmp
 
- unzip -o ${1}.zip
+ unzip -o ${1}.zip &>>{LOG_FILE}
  STAT_CHECK $? "unzip ${1} content"
 
  rm -rf /home/Roboshop && mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
