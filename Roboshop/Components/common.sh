@@ -50,7 +50,7 @@ cd /tmp
 
  chown roboshop:roboshop -R /home/Roboshop
 
- sudo mv ~/tmp/${1}-main/systemd.service /home/Roboshop/${1}/
+ sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
  STAT_CHECK $? "Fetched system file"
 
  sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' /home/Roboshop/${1}/systemd.service
