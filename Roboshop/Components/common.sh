@@ -42,7 +42,7 @@ cd /tmp
  STAT_CHECK $? "unzip ${1} content"
 
 
- sudo mkdir /home/Roboshop/${1}
+ mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
 
 
  sudo yum install npm &>>{LOG_FILE}
