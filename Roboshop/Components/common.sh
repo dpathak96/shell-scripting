@@ -54,11 +54,10 @@ cd /tmp
  STAT_CHECK $? "Fetched system file"
 
  sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
-        -e 's/Redis_ENDPOINT/redis.roboshop.interior/' \
+        -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
         -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
         -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' /home/Roboshop/${1}/systemd.service
  STAT_CHECK $? "Update IP address in systemd file"
-
 
  mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
  STAT_CHECK $? "Moved content in system file"
