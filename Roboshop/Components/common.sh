@@ -18,6 +18,9 @@ DOWNLOAD() {
 component=${1}
   curl -s -L -o /tmp/${1}.zip "https://github.com/roboshop-devops-project/${1}/archive/main.zip" &>>${LOG_FILE}
   STAT_CHECK $? "Download ${1} code"
+  cd /tmp
+  unzip -o ${1}.zip &>>{LOG_FILE}
+  STAT_CHECK $? "unzip ${1} content"
 }
 
 
@@ -33,16 +36,10 @@ component=${1}
   STAT_CHECK $? "Add Application user"
  fi
 
- curl -s -L -o /tmp/${1}.zip "https://github.com/roboshop-devops-project/${1}/archive/main.zip" &>>{LOG_FILE}
- STAT_CHECK $? "Download ${1}"
-
-cd /tmp
-
- unzip -o ${1}.zip &>>{LOG_FILE}
- STAT_CHECK $? "unzip ${1} content"
+ DOWNLOAD ${1}
 
  rm -rf /home/Roboshop && mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
- STAT_CHECK $? "DIRECTORY Exists"
+ STAT_CHECK $? "Copy ${1} Content"
 
 
  sudo yum install npm -y &>>{LOG_FILE}
