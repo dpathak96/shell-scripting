@@ -46,8 +46,7 @@ APP_USER_SETUP ${1}
  rm -rf /home/Roboshop && mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
  STAT_CHECK $? "Copy ${1} Content"
 
-
- sudo yum install npm -y &>>{LOG_FILE}
+cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
  STAT_CHECK $? "NPM install"
 
  chown roboshop:roboshop -R /home/Roboshop
