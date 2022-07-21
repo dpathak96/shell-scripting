@@ -26,6 +26,9 @@ SYSTEMD_SETUP() {
 
   mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
   STAT_CHECK $? "Moved content in system file"
+
+  systemctl daemon-reload &>>{LOG_FILE} && systemctl start ${1} &>>{LOG_FILE} && systemctl enable ${1} &>>{LOG_FILE}
+  STAT_CHECK $? "Start ${1} service"
 }
 
 
@@ -70,9 +73,6 @@ cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
 
  SYSTEMD_SETUP ${1}
 
- systemctl daemon-reload &>>{LOG_FILE} && systemctl start ${1} &>>{LOG_FILE} && systemctl enable ${1} &>>{LOG_FILE}
- STAT_CHECK $? "Start ${1} service"
-
 }
 
 JAVA() {
@@ -92,4 +92,7 @@ JAVA() {
 
  cd /home/Roboshop/${1} && mvn clean package &>>{LOG_FILE} && mv target/${1}-1.0.jar ${1}.jar &>>{LOG_FILE}
  STAT_CHECK $? "Compile Java Code"
+
+ SYSTEMD_SETUP ${1}
+
 }
