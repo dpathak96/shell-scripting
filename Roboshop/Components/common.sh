@@ -87,7 +87,7 @@ JAVA() {
  rm -rf /home/Roboshop && mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
  STAT_CHECK $? "Copy ${1} Content"
 
- sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
+ sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}
  STAT_CHECK $? "Fetched system file"
 
  cd /home/Roboshop/${1} && mvn clean package &>>{LOG_FILE} && mv target/${1}-1.0.jar ${1}.jar &>>{LOG_FILE}
