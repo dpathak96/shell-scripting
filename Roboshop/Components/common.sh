@@ -53,10 +53,12 @@ cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
  sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
  STAT_CHECK $? "Fetched system file"
 
-  mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
-  STAT_CHECK $? "Moved content in system file"
+
 
  chown roboshop:roboshop -R /home/Roboshop
+
+  mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
+   STAT_CHECK $? "Moved content in system file"
 
  sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
         -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
