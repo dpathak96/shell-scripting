@@ -14,6 +14,19 @@ STAT_CHECK() {
 
 set-hostname -skip-apply ${COMPONENT}
 
+APP_USER_SETUP() {
+component=${1}
+ id roboshop &>>{LOG_FILE}
+
+ if [ $? -ne 0 ]; then
+  useradd roboshop &>>{LOG_FILE}
+  STAT_CHECK $? "Add Application user"
+ fi
+
+ DOWNLOAD ${1}
+
+}
+
 DOWNLOAD() {
 component=${1}
   curl -s -L -o /tmp/${1}.zip "https://github.com/roboshop-devops-project/${1}/archive/main.zip" &>>${LOG_FILE}
@@ -29,14 +42,7 @@ component=${1}
  yum install nodejs make gcc-c++ -y &>>{LOG_FILE}
  STAT_CHECK $? "Install NodeJS"
 
- id roboshop &>>{LOG_FILE}
-
- if [ $? -ne 0 ]; then
-  useradd roboshop &>>{LOG_FILE}
-  STAT_CHECK $? "Add Application user"
- fi
-
- DOWNLOAD ${1}
+APP_USER_SETUP
 
  rm -rf /home/Roboshop && mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
  STAT_CHECK $? "Copy ${1} Content"
