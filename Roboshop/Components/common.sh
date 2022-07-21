@@ -50,7 +50,7 @@ cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
  STAT_CHECK $? "NPM install"
 
 
- sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}
+ sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
  STAT_CHECK $? "Fetched system file"
 
 
