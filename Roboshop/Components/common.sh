@@ -14,6 +14,21 @@ STAT_CHECK() {
 
 set-hostname -skip-apply ${COMPONENT}
 
+SYSTEMD_SETUP() {
+  component=${1}
+  chown roboshop:roboshop -R /home/Roboshop
+
+  sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
+          -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
+          -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
+          -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' /home/Roboshop/${1}/systemd.service
+  STAT_CHECK $? "Update IP address in systemd file"
+
+  mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
+  STAT_CHECK $? "Moved content in system file"
+}
+
+
 APP_USER_SETUP() {
 component=${1}
  id roboshop &>>{LOG_FILE}
@@ -35,7 +50,7 @@ component=${1}
 
 
 NODEJS() {
-component=${1}
+ component=${1}
  yum install nodejs make gcc-c++ -y &>>{LOG_FILE}
  STAT_CHECK $? "Install NodeJS"
 
@@ -53,18 +68,7 @@ cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
  sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
  STAT_CHECK $? "Fetched system file"
 
-
- chown roboshop:roboshop -R /home/Roboshop
-
- sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
-        -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
-        -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
-        -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' /home/Roboshop/${1}/systemd.service
- STAT_CHECK $? "Update IP address in systemd file"
-
- mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
- STAT_CHECK $? "Moved content in system file"
-
+ SYSTEMD_SETUP ${1}
 
  systemctl daemon-reload &>>{LOG_FILE} && systemctl start ${1} &>>{LOG_FILE} && systemctl enable ${1} &>>{LOG_FILE}
  STAT_CHECK $? "Start ${1} service"
@@ -86,6 +90,6 @@ JAVA() {
  sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
  STAT_CHECK $? "Fetched system file"
 
- cd /home/Roboshop/${1} && mv
-
+ cd /home/Roboshop/${1} && mvn clean package &>>{LOG_FILE} && mv target/${1}-1.0.jar ${1}.jar &>>{LOG_FILE}
+ STAT_CHECK $? "Compile Java Code"
 }
