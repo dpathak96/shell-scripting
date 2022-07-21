@@ -49,10 +49,12 @@ APP_USER_SETUP ${1}
 cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
  STAT_CHECK $? "NPM install"
 
- chown roboshop:roboshop -R /home/Roboshop
 
  sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
  STAT_CHECK $? "Fetched system file"
+
+ chown roboshop:roboshop -R /home/Roboshop
+
 
  sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
         -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
@@ -65,5 +67,24 @@ cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
 
  systemctl daemon-reload &>>{LOG_FILE} && systemctl start ${1} &>>{LOG_FILE} && systemctl enable ${1} &>>{LOG_FILE}
  STAT_CHECK $? "Start ${1} service"
+
+}
+
+JAVA() {
+  component=${1}
+  yum install maven -y &>>{LOG_FILE}
+  STAT_CHECK $? "Installing Maven"
+
+ APP_USER_SETUP ${1}
+
+ DOWNLOAD ${1}
+
+ rm -rf /home/Roboshop && mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
+ STAT_CHECK $? "Copy ${1} Content"
+
+ sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
+ STAT_CHECK $? "Fetched system file"
+
+ cd /home/Roboshop/${1} && mv
 
 }
