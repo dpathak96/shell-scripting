@@ -23,7 +23,10 @@ SYSTEMD_SETUP() {
           -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
           -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' \
           -e 's/CART_ENDPOINT/cart.roboshop.interior/' \
-          -e 's/DB_HOST/mysql.roboshop.interior/' /home/Roboshop/${1}/systemd.service
+          -e 's/DB_HOST/mysql.roboshop.interior/' \
+          -e 's/CARTHOST/cart.roboshop.interior/' \
+          -e 's/USERHOST/user.roboshop.interior/' \
+          -e 's/AMQPHOST/rabbitmq.roboshop.interior' /home/Roboshop/${1}/systemd.service
   STAT_CHECK $? "Update IP address in systemd file"
 
   mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
@@ -109,9 +112,9 @@ PYTHON() {
 
   DOWNLOAD ${1}
 
-  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1} && cp -r /tmp/${1}-main/* /home/roboshop/${1} &>>{LOG_FILE}
+  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1} && cp -r /tmp/${1}-main/* /home/Roboshop/${1} &>>{LOG_FILE}
 
-  cd /home/roboshop/payment && pip3 install -r requirements.txt &>>{LOG_FILE}
+  cd /home/Roboshop/payment && pip3 install -r requirements.txt &>>{LOG_FILE}
   STAT_CHECK $? "Install Python dependencies"
 
   SYSTEMD_SETUP ${1}
