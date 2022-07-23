@@ -16,7 +16,7 @@ set-hostname -skip-apply ${COMPONENT}
 
 SYSTEMD_SETUP() {
   component=${1}
-  chown roboshop:roboshop -R /home/Roboshop
+  chown roboshop:roboshop -R /home/roboshop
 
   sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
           -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
@@ -27,10 +27,10 @@ SYSTEMD_SETUP() {
           -e 's/CARTHOST/cart.roboshop.interior/' \
           -e 's/USERHOST/user.roboshop.interior/' \
           -e 's/AMQPHOST/rabbitmq.roboshop.interior/' \
-          -e 's/RABBITMQ-IP/rabbitmq.roboshop.interior/' /home/Roboshop/${1}/systemd.service
+          -e 's/RABBITMQ-IP/rabbitmq.roboshop.interior/' /home/roboshop/${1}/systemd.service
   STAT_CHECK $? "Update IP address in systemd file"
 
-  mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
+  mv /home/roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
   STAT_CHECK $? "Moved content in system file"
 
   systemctl daemon-reload &>>{LOG_FILE} && systemctl restart ${1} &>>{LOG_FILE} && systemctl enable ${1} &>>{LOG_FILE}
@@ -67,14 +67,14 @@ APP_USER_SETUP ${1}
 
  DOWNLOAD ${1}
 
- rm -rf /home/Roboshop && mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
+ rm -rf /home/roboshop && mkdir /home/roboshop && mkdir /home/roboshop/${1}
  STAT_CHECK $? "Copy ${1} Content"
 
-cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
+cd /home/roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
  STAT_CHECK $? "NPM install"
 
 
- sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}/
+ sudo mv /tmp/${1}-main/systemd.service /home/roboshop/${1}/
  STAT_CHECK $? "Fetched system file"
 
  SYSTEMD_SETUP ${1}
@@ -90,13 +90,13 @@ JAVA() {
 
  DOWNLOAD ${1}
 
- rm -rf /home/Roboshop && mkdir /home/Roboshop && mkdir /home/Roboshop/${1}
+ rm -rf /home/roboshop && mkdir /home/roboshop && mkdir /home/roboshop/${1}
  STAT_CHECK $? "Copy ${1} Content"
 
- sudo mv /tmp/${1}-main/* /home/Roboshop/${1}
+ sudo mv /tmp/${1}-main/* /home/roboshop/${1}
  STAT_CHECK $? "Fetched system file"
 
- cd /home/Roboshop/${1} && mvn clean package && mv target/${1}-1.0.jar ${1}.jar &>>{LOG_FILE}
+ cd /home/roboshop/${1} && mvn clean package && mv target/${1}-1.0.jar ${1}.jar &>>{LOG_FILE}
  STAT_CHECK $? "Compile Java Code"
 
 
@@ -113,9 +113,9 @@ PYTHON() {
 
   DOWNLOAD ${1}
 
-  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1} && cp -r /tmp/${1}-main/* /home/Roboshop/${1}/systemd.service.  &>>{LOG_FILE}
+  rm -rf /home/roboshop/${1} && mkdir -p /home/roboshop/${1} && cp -r /tmp/${1}-main/* /home/roboshop/${1}/systemd.service.  &>>{LOG_FILE}
 
-  cd /home/Roboshop/payment && pip3 install -r requirements.txt &>>{LOG_FILE}
+  cd /home/roboshop/payment && pip3 install -r requirements.txt &>>{LOG_FILE}
   STAT_CHECK $? "Install Python dependencies"
 
   SYSTEMD_SETUP ${1}
@@ -131,9 +131,9 @@ GOLANG() {
 
   DOWNLOAD ${1}
 
-  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1} && cp -r /tmp/${1}-main/* /home/Roboshop/${1} &>>{LOG_FILE}
+  rm -rf /home/roboshop/${1} && mkdir -p /home/roboshop/${1} && cp -r /tmp/${1}-main/* /home/roboshop/${1} &>>{LOG_FILE}
 
-  cd /home/Roboshop/${1} && go mod init dispatch && go get &&  go build
+  cd /home/roboshop/${1} && go mod init dispatch && go get &&  go build
 
   SYSTEMD_SETUP ${1}
 
