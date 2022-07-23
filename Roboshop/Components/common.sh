@@ -99,3 +99,18 @@ JAVA() {
  SYSTEMD_SETUP ${1}
 
 }
+
+PYTHON() {
+  component=${1}
+  yum install python36 gcc python3-devel -y
+
+  APP_USER_SETUP
+
+  DOWNLOAD ${1}
+
+  rm -rf /home/roboshop/${1} && mkdir -p /home/roboshop/${1} && cp -r /tmp/${1}-main/* /home/roboshop/${1} &>>{LOG_FILE}
+
+  cd /home/roboshop/payment && pip3 install -r requirements.txt
+
+  SYSTEMD_SETUP
+}
