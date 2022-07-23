@@ -113,9 +113,9 @@ PYTHON() {
 
   DOWNLOAD ${1}
 
-  rm -rf /home/roboshop/${1} && mkdir -p /home/roboshop/${1} && cp -r /tmp/${1}-main/* /home/roboshop/${1}/systemd.service.  &>>{LOG_FILE}
+  rm -rf /home/roboshop/${1} && mkdir -p /home/roboshop/${1} && cp -r /tmp/${1}-main/* /home/roboshop/${1}/systemd.service  &>>{LOG_FILE}
 
-  cd /home/roboshop/${1} && pip3 install -r requirements.txt &>>{LOG_FILE}
+  cd /home/roboshop/${1} && pip3 install -r requirements.txt
   STAT_CHECK $? "Install Python dependencies"
 
   SYSTEMD_SETUP ${1}
