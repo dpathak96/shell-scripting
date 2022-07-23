@@ -19,5 +19,12 @@ STAT_CHECK $? "Copying frontend content"
 cp /tmp/frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
 STAT_CHECK $? "Update Nginx Config File"
 
+sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.interior/' \
+    -i -e '/cart/ s/localhost/cart.roboshop.interior/' \
+    -i -e '/user/ s/localhost/user.roboshop.interior/' \
+    -i -e '/shipping s/localhost/shipping.roboshop.interior/' \
+    -i -e '/payment/ s/localhost/payment.roboshop.interior/' /etc/nginx/default.d/roboshop.conf
+
+
 systemctl enable nginx && systemctl restart nginx &>>${LOG_FILE}
 STAT_CHECK $? "Restart Nginx"
