@@ -22,7 +22,7 @@ SYSTEMD_SETUP() {
           -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
           -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
           -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' \
-          -e 's/CART_ENDPOINT/cart.roboshop.interior' \
+          -e 's/CART_ENDPOINT/cart.roboshop.interior/' \
           -e 's/DB_HOST/mysql.roboshop.interior/' /home/Roboshop/${1}/systemd.service
   STAT_CHECK $? "Update IP address in systemd file"
 
