@@ -80,7 +80,7 @@ JAVA() {
   yum install maven -y
   STAT_CHECK $? "Installing Maven"
 
- APP_USER_SETUP ${1}
+ APP_USER_SETUP
 
  DOWNLOAD ${1}
 
@@ -90,16 +90,10 @@ JAVA() {
  sudo mv /tmp/${1}-main/* /home/Roboshop/${1}
  STAT_CHECK $? "Fetched system file"
 
- cd /home/Roboshop/${1}
+ cd /home/Roboshop/${1} && mvn clean package && mv target/${1}-1.0.jar ${1}.jar
  STAT_CHECK $? "Compile Java Code"
 
- mvn clean package
- STAT_CHECK $? "Clean Java Code"
 
- mv target/${1}-1.0.jar ${1}.jar
- STAT_CHECK $? "CMove Java Code"
-
-
- SYSTEMD_SETUP ${1}
+ SYSTEMD_SETUP
 
 }
