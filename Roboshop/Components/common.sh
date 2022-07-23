@@ -90,8 +90,15 @@ JAVA() {
  sudo mv /tmp/${1}-main/systemd.service /home/Roboshop/${1}
  STAT_CHECK $? "Fetched system file"
 
- cd /home/Roboshop/${1} && mvn clean package && mv target/${1}-1.0.jar ${1}.jar
+ cd /home/Roboshop/${1} &&  && mv target/${1}-1.0.jar ${1}.jar
  STAT_CHECK $? "Compile Java Code"
+
+ mvn clean package
+ STAT_CHECK $? "Clean Java Code"
+
+ mv target/${1}-1.0.jar ${1}.jar
+ STAT_CHECK $? "CMove Java Code"
+
 
  SYSTEMD_SETUP ${1}
 
