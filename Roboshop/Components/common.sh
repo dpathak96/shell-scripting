@@ -109,9 +109,9 @@ PYTHON() {
 
   DOWNLOAD ${1}
 
-  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1} && cp -r /tmp/${1}-main/* /home/roboshop/${1} &>>{LOG_FILE}
+  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1} && cp -r /tmp/${1}-main/* /home/Roboshop/${1} &>>{LOG_FILE}
 
-  cd /home/roboshop/payment && pip3 install -r requirements.txt &>>{LOG_FILE}
+  cd /home/Roboshop/payment && pip3 install -r requirements.txt &>>{LOG_FILE}
   STAT_CHECK $? "Install Python dependencies"
 
   SYSTEMD_SETUP ${1}
