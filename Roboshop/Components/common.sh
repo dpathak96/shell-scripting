@@ -80,7 +80,7 @@ JAVA() {
   yum install maven -y
   STAT_CHECK $? "Installing Maven"
 
- APP_USER_SETUP
+ APP_USER_SETUP ${1}
 
  DOWNLOAD ${1}
 
@@ -94,6 +94,6 @@ JAVA() {
  STAT_CHECK $? "Compile Java Code"
 
 
- SYSTEMD_SETUP
+ SYSTEMD_SETUP ${1}
 
 }
