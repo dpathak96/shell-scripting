@@ -135,4 +135,5 @@ GOLANG() {
   cd /home/Roboshop/${1} && go mod init dispatch && go get &&  go build
 
   SYSTEMD_SETUP ${1}
+
 }
