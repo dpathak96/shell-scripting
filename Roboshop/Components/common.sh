@@ -21,7 +21,9 @@ SYSTEMD_SETUP() {
   sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
           -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
           -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
-          -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' /home/Roboshop/${1}/systemd.service
+          -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' \
+          -e 's/CART_ENDPOINT/cart.roboshop.interior' \
+          -e 's/DB_HOST/mysql.roboshop.interior/' /home/Roboshop/${1}/systemd.service
   STAT_CHECK $? "Update IP address in systemd file"
 
   mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
