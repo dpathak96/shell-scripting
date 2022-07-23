@@ -102,7 +102,8 @@ JAVA() {
 
 PYTHON() {
   component=${1}
-  yum install python36 gcc python3-devel -y
+  yum install python36 gcc python3-devel -y &>>{LOG_FILE}
+  STAT_CHECK $? "Install python Repo"
 
   APP_USER_SETUP
 
@@ -110,7 +111,8 @@ PYTHON() {
 
   rm -rf /home/roboshop/${1} && mkdir -p /home/roboshop/${1} && cp -r /tmp/${1}-main/* /home/roboshop/${1} &>>{LOG_FILE}
 
-  cd /home/roboshop/payment && pip3 install -r requirements.txt
+  cd /home/roboshop/payment && pip3 install -r requirements.txt &>>{LOG_FILE}
+  STAT_CHECK $? "Install Python dependencies"
 
-  SYSTEMD_SETUP
+  SYSTEMD_SETUP ${1}
 }
