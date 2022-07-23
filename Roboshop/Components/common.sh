@@ -26,7 +26,7 @@ SYSTEMD_SETUP() {
           -e 's/DB_HOST/mysql.roboshop.interior/' \
           -e 's/CARTHOST/cart.roboshop.interior/' \
           -e 's/USERHOST/user.roboshop.interior/' \
-          -e 's/AMQPHOST/rabbitmq.roboshop.interior' /home/Roboshop/${1}/systemd.service
+          -e 's/AMQPHOST/rabbitmq.roboshop.interior/' /home/Roboshop/${1}/systemd.service
   STAT_CHECK $? "Update IP address in systemd file"
 
   mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
