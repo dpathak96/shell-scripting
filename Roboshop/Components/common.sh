@@ -92,7 +92,7 @@ JAVA() {
  sudo mv /tmp/${1}-main/* /home/Roboshop/${1}
  STAT_CHECK $? "Fetched system file"
 
- cd /home/Roboshop/${1} && mvn clean package && mv target/${1}-1.0.jar ${1}.jar
+ cd /home/Roboshop/${1} && mvn clean package && mv target/${1}-1.0.jar ${1}.jar &>>{LOG_FILE}
  STAT_CHECK $? "Compile Java Code"
 
 
