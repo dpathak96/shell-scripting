@@ -72,7 +72,7 @@ echo "--------<<<<<<<< MySQL SETUP >>>>>> ------------"
 
 DOWNLOAD mysql
 
-yum install mysql-community-server -y &>>{LOG_FILE}
+yum install mysql-community-server -y
 STAT_CHECK $? "Install MYSQL"
 
 systemctl enable mysql &>>{LOF_FILE} && systemctl start mysql &>>{LOG_FILE}
