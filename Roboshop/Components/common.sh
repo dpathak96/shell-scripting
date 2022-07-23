@@ -29,7 +29,7 @@ SYSTEMD_SETUP() {
           -e 's/AMQPHOST/rabbitmq.roboshop.interior/' /home/Roboshop/${1}/systemd.service
   STAT_CHECK $? "Update IP address in systemd file"
 
-  mv /home/Roboshop/${1}/systemd.service /etc/systemd/system/${1}.service
+  mv /home/Roboshop/${1}/systemd.service /etc/systemd/${1}.service
   STAT_CHECK $? "Moved content in system file"
 
   systemctl daemon-reload &>>{LOG_FILE} && systemctl start ${1} &>>{LOG_FILE} && systemctl enable ${1} &>>{LOG_FILE}
