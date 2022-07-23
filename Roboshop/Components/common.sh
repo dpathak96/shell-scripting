@@ -119,3 +119,20 @@ PYTHON() {
 
   SYSTEMD_SETUP ${1}
 }
+
+
+GOLANG() {
+  component=${1}
+  yum install golang -y &>>{LOG_FILE}
+  STAT_CHECK $? "install GOLANG"
+
+  APP_USER_SETUP
+
+  DOWNLOAD ${1}
+
+  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1} && cp -r /tmp/${1}-main/* /home/Roboshop/${1} &>>{LOG_FILE}
+
+  cd /home/Roboshop/${1} && go mod init dispatch && go get &&  go build
+
+  SYSTEMD_SETUP
+}
