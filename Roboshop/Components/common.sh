@@ -77,7 +77,7 @@ cd /home/Roboshop/${1} && sudo yum install npm -y &>>{LOG_FILE}
 
 JAVA() {
   component=${1}
-  yum install maven -e
+  yum install maven -y
   STAT_CHECK $? "Installing Maven"
 
  APP_USER_SETUP ${1}
