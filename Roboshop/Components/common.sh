@@ -130,7 +130,7 @@ GOLANG() {
 
   DOWNLOAD ${1}
 
-  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1} && cp -r /tmp/${1}-main/* /home/Roboshop/${1}/systemd.service &>>{LOG_FILE}
+  rm -rf /home/roboshop/${1} && mkdir -p /home/Roboshop/${1}/ && cp -r /tmp/${1}-main/* /home/Roboshop/${1}/systemd.service &>>{LOG_FILE}
 
   cd /home/Roboshop/${1} && go mod init dispatch && go get &&  go build
 
