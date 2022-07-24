@@ -76,7 +76,7 @@ STAT_CHECK $? "Configure Yum Repos"
 yum install mysql-community-server -y
 STAT_CHECK $? "Install MYSQL"
 
-systemctl enable mysql && systemctl start mysql
+systemctl enable mysqld && systemctl start mysqld
 STAT_CHECK $? "Start mysql"
 
 
