@@ -70,7 +70,8 @@ STAT_CHECK $? "Configure app user permission"
 
 echo "--------<<<<<<<< MySQL SETUP >>>>>> ------------"
 
-DOWNLOAD mysql
+curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>{LOG_FILE}
+STAT_CHECK $? "Configure Yum Repos"
 
 yum install mysql-community-server -y
 STAT_CHECK $? "Install MYSQL"
@@ -78,12 +79,11 @@ STAT_CHECK $? "Install MYSQL"
 systemctl enable mysql &>>{LOF_FILE} && systemctl start mysql &>>{LOG_FILE}
 STAT_CHECK $? "Start mysql"
 
-echo "working on mysql scrit"
 
 As per the Application need, we are choosing MySQL 5.7 version.
 
-Setup MySQL Repo
-# curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo
+
+
 
 Install MySQL
 # yum install mysql-community-server -y
