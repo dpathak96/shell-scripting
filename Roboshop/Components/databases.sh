@@ -83,7 +83,7 @@ DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log |awk '{print $N
 
 echo "ALTER USER 'root'@'localhost IDENTIFIED By 'Roboshop@1' ;" >/tmp/pass.sql
 mysql --connect-expired-password -root -p"${DEFAULT_PASSWORD}" </tmp/pass.sql &>>{LOG_FILE}
-STAT_CHEK $? "Setup mysql password"
+STAT_CHECK $? "Setup mysql password"
 
 
 
