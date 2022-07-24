@@ -79,10 +79,10 @@ STAT_CHECK $? "Install MYSQL"
 systemctl enable mysqld && systemctl start mysqld
 STAT_CHECK $? "Start mysql"
 
-DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log |awk '{print $NF}')
+DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}')
 
-echo "ALTER USER 'root'@'localhost IDENTIFIED By 'Roboshop@1' ;" >/tmp/pass.sql
-mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}"
+echo "ALTER USER 'root'@'localhost IDENTIFIED BY 'Roboshop@1' ;" >/tmp/pass.sql
+mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}" </tmp/pass.sql &>>{LOG_FILE}
 STAT_CHECK $? "Setup new mysql password"
 
 
