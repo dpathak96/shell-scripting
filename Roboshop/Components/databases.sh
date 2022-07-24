@@ -78,6 +78,8 @@ STAT_CHECK $? "Install MYSQL"
 systemctl enable mysql &>>{LOF_FILE} && systemctl start mysql &>>{LOG_FILE}
 STAT_CHECK $? "Start mysql"
 
+echo "working on mysql scrit"
+
 As per the Application need, we are choosing MySQL 5.7 version.
 
 Setup MySQL Repo
