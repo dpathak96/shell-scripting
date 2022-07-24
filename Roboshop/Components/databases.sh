@@ -82,7 +82,7 @@ STAT_CHECK $? "Start mysql"
 DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log |awk '{print $NF}')
 
 echo "ALTER USER 'root'@'localhost IDENTIFIED By 'Roboshop@1' ;" >/tmp/pass.sql
-mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}"
+mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}" &>>{LOG_FILE}
 STAT_CHECK $? "Setup new mysql password"
 
 
