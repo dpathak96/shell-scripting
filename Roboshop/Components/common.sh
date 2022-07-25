@@ -20,7 +20,7 @@ SYSTEMD_SETUP() {
 
   sudo sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.interior/' \
           -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
-          -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
+          -e 's/MONGO_ENDPOINT/mongodb.roboshop.interior/' \
           -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' \
           -e 's/CART_ENDPOINT/cart.roboshop.interior/' \
           -e 's/DB_HOST/mysql.roboshop.interior/' \
