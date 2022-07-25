@@ -88,6 +88,11 @@ if [ $? -ne 0 ]; then
  STAT_CHECK $? "Setup new password"
 fi
 
+echo 'show plugins;' | mysql -uroot -pRoboShop@1 2>>{LOG_FILE}| grep validate_password &>>{LOG_FILE}
+ if [ $? -eq 0 ]; then
+   echo 'uninstall plugin validate_password;' | mysql -uroot -pRoboShop@1 &>>{LOG_FILE}
+   STAT_CHECK $? "Uninstall password plugin"
+fi
 
 #As per the Application need, we are choosing MySQL 5.7 version.
 #
