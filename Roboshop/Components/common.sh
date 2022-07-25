@@ -18,7 +18,7 @@ SYSTEMD_SETUP() {
   component=${1}
   chown roboshop:roboshop -R /home/roboshop
 
-  sudo sed -i -e 's/MONGO_DNSNAME/mongo.roboshop.interior/' \
+  sudo sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.interior/' \
           -e 's/REDIS_ENDPOINT/redis.roboshop.interior/' \
           -e 's/MONGO_ENDPOINT/mongo.roboshop.interior/' \
           -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.interior/' \
