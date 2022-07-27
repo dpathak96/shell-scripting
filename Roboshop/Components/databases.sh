@@ -64,7 +64,7 @@ if [ $? -ne 0 ]; then
   STAT_CHECK $? "Add Application user"
 fi
 
-rabbitmqctl set_user_tags roboshop administrator &>>{LOG_FILE} && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"  &>>${LOG_FILE}
+rabbitmqctl set_user_tags roboshop administrator && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"  &>>${LOG_FILE}
 STAT_CHECK $? "Configure app user permission"
 
 
