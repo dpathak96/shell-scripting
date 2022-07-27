@@ -6,7 +6,7 @@ source common.sh
 
 DOWNLOAD mongodb
 
-yum install -y mongodb-org
+yum install -y mongo-org
 STAT_CHECK $? "Install MongoDB"
 
 sed -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>>{LOG_FILE}
