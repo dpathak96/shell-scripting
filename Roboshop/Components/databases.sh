@@ -60,7 +60,7 @@ STAT_CHECK $? "Start RabbitMQ"
 id roboshop
 
 if [ $? -ne 0 ]; then
-  useradd roboshop &>>{LOG_FILE}
+  useradd roboshop
   STAT_CHECK $? "Add Application user"
 fi
 
